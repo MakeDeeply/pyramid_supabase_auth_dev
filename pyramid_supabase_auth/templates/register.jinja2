@@ -1,0 +1,20 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+<div class="container p-2 m-2">
+    <h1>Register</h1>
+
+    {% include 'error.jinja2' %}
+
+    <div class="shadow p-2 card">
+        <form method="post" action="{{request.route_url('register')}}">
+            {% include 'hidden_fields.jinja2' %}
+
+            {% include 'email_password.jinja2' %}
+
+            <input class="form-control btn btn-primary m-2" type="submit" value="register">
+        </form>
+    </div>
+
+</div>
+{% endblock content %}

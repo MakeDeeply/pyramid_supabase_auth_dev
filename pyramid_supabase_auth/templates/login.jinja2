@@ -1,0 +1,32 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+<div class="container p-2 m-2">
+    <h1>Login</h1>
+
+    {% include 'error.jinja2' %}
+
+    <div class="row">
+        <form class="col-md m-2 card" method="post" action="{{request.route_url('login')}}">
+			{% include 'hidden_fields.jinja2' %}
+
+            {% include 'email_password.jinja2' %}
+
+            <input class="btn btn-primary m-2" type="submit" value="Login">{# register vs. login #}
+        </form>
+
+        <div class="col-md m-2 card">
+            <a href="{{request.route_url('oauth_login', provider='discord')}}" class="btn btn-secondary m-2">with Discord</a>
+            <a href="{{request.route_url('oauth_login', provider='github')}}" class="btn btn-secondary m-2">with Github</a>
+            <a href="{{request.route_url('oauth_login', provider='google')}}" class="btn btn-secondary m-2">with Google</a>
+        </div>
+
+        <div class="col-md m-2 card">
+            Or <a href="{{request.route_url('register')}}">Register</a>
+            <a href="{{request.route_url('forgot_password')}}">Forgot password?</a>
+        </div>
+
+    </div>
+
+</div>
+{% endblock content %}

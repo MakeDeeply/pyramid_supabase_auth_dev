@@ -1,0 +1,16 @@
+.DS_Store
+* alias
+* copy*
+*.pyc
+access.log*
+bin/
+commands.txt
+development.ini
+dist/
+env/
+include/
+geckodriver.log
+lib/
+local_settings.py
+pyramid.log*
+pyramid.pid

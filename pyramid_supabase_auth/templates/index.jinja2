@@ -1,0 +1,56 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+
+<div class="content">
+    <h1>Home</h1>
+
+	{% if request.identity is not none %}
+
+		{% if fav_color != "" %}
+		<p>Change your color <a class="link btn btn-secondary" href="{{request.route_url('profile')}}">Change Color</a></p>
+		{% else %}
+		<p>What's your color? Set it here <a class="link btn btn-secondary" href="{{request.route_url('profile')}}">Set Color</a></p>
+		{% endif %}
+
+	{% else %}
+		<p>Want to set your color? <a class="link btn btn-secondary" href="{{request.route_url('login')}}">Login</a> </p>
+
+	{% endif %}
+
+	<table class="table table-bordered align-middle">
+		<thead>
+			<tr>
+				<th scope="col">Color</th>
+				<th scope="col">Count</th>
+			</tr>
+		</thead>
+
+		<tbody>
+		{% for color in colors %}
+			{% set count = namespace(value=0) %}
+			{% set included = namespace(value=0) %}
+			<tr>
+				<td>
+					<span class="colorTab" style="background-color: {{color}};"></span>
+					<span class="colorText">{{color}}</span>
+				</td>
+
+				{% for col in colorsTable %}
+					{% if col.favourite_color == color%}
+						{% set count.value = count.value + 1 %}
+						{% if request.identity is not none and request.identity.id == col.user_id %}
+							{% set included.value = 1 %}
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+
+				<td><span class="colorCount">{{count.value}}</span>{% if included.value == 1 %} (Including You){% endif %}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+
+</div>
+
+{% endblock content %}

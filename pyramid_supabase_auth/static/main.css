@@ -1,0 +1,21 @@
+body {
+    min-height: 100vh;
+}
+
+.colorTab {
+    display: inline-flex;
+    min-width: 30px;
+    min-height: 30px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid gray;
+    content: '';
+}
+
+.colorText {
+    margin-bottom: 0;
+}
+
+.favoriteColorText {
+    color: darkblue;
+}
